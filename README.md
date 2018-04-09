@@ -1,6 +1,4 @@
 # Schedule Web Application
-Test answered: Oluwasemire Ayotunji Olaniyi for Apex systems.
-
 Initial Commit: The webpage is functional. Back-end and database are working fine
 
 Installation (Windows): 
