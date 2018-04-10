@@ -1,0 +1,85 @@
+html{
+    width: 100%;
+
+}
+section, div{
+    margin: 10px 0px 10px 0px;
+    
+
+}
+.contained_table{
+    width: 100%;
+    overflow-x: auto;
+}
+nav{
+    background-color: teal;
+    height: 50px;
+    text-align: center;
+    color: white;
+    padding: 20px 20px;
+}
+.borderM{
+    border: 1px solid green;
+}
+.display_none {
+    display: none
+}
+.display_block {
+    display: block
+}
+
+#error_section{
+    background: rgb(1, 36, 43);
+    color: white;
+}
+.red{
+    background: red;
+    color: white;
+}
+.green{
+    background: green;
+    color: white;
+}
+
+a:hover{
+    text-decoration: underline;
+}
+a:visited, a:hover, a:link{
+    color: black;
+}
+
+/* flex arrangement */
+.flexer_container{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.box{
+    width: 100%;
+}
+.error_info{
+    width: 100%;
+    order: 1;
+ 
+}
+.new_add_search{
+    width: 100%;
+    order: 2;
+ 
+}
+.show_select_db{
+    width: 100%;
+    order: 3;
+ 
+}
+.del_extra_table{
+    width: 100%;
+    order: 4;
+
+}
+.show_del_data{
+    width: 100%;
+    order: 5;
+
+}
+
