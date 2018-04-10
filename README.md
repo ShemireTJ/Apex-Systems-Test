@@ -1,4 +1,4 @@
-# Schedule Web Application
+# Web Application (Appointment-App)
 Initial Commit: The webpage is functional. Back-end and database are working fine
 
 Installation (Windows): 
