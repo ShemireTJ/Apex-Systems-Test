@@ -25,7 +25,7 @@ my $password = "";
 my $dbh =DBI->connect($dsn, $userid, $password, { RaiseError => 1}) or die $DBI::errstr;
 my $table_name = "CREATED_TABLE_2";
 
-print "$database is opened <br>";
+# print "$database is opened <br>";
 # --------------------------------------------
 
 
@@ -45,8 +45,8 @@ my $stmt = qq(INSERT INTO $table_name (DATE,TIME,DESC)
             VALUES ('$date_name', '$time_name', '$description_name'));
 my $rv = $dbh->do($stmt) or die $DBI::errstr;
 
-print "<h1>Inserted:</h1>";
-print "Date: $date_name <br> Time: $time_name <br> Description: $description_name <br>";
-print "Inserted in $table_name Table successfully<br>";
+print "<p>Success! Data Inserted to database</p>";
+# print "Date: $date_name <br> Time: $time_name <br> Description: $description_name <br>";
+# print "Inserted in $table_name Table successfully<br>";
 
 $dbh->disconnect();
