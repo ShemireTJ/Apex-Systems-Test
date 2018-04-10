@@ -50,16 +50,6 @@ function getAppointments(){
                             myTable+="<td>" + JSON.stringify(data[i].DATE).replace(/^"(.*)"$/, '$1') + "</td>";
                             myTable+="<td>" + JSON.stringify(data[i].TIME).replace(/^"(.*)"$/, '$1') + "</td>";
                             myTable+="<td>" + JSON.stringify(data[i].DESC).replace(/^"(.*)"$/, '$1') + "</td></tr>";
-                            
-
-                            // tr = $('<tr/>');
-                            // tr.append("<td>" + JSON.stringify(data[i].DATE).replace(/^"(.*)"$/, '$1') + "</td>");
-                            // tr.append("<td>" + JSON.stringify(data[i].TIME).replace(/^"(.*)"$/, '$1') + "</td>");
-                            // tr.append("<td>" + JSON.stringify(data[i].DESC).replace(/^"(.*)"$/, '$1') + "</td>");
-                            
-                            // $('#table_dynamic').append(tr);
-                            
-                            
                         }
                         myTable+="</table>";
                         document.getElementById('table_search').innerHTML = myTable;
@@ -99,7 +89,7 @@ function getAppointments(){
 
 // this is the recomended jquery v3+ .ready() function. Other types are deprecated. Source: https://api.jquery.com/ready/
 $(function(){
-    $("h6").text("DOM can now be manipulated");
+    $("#dom_info").text("DOM Active! Continue");
     var $new_btn = $('#new_button');
     var $add_btn = $('#add_button');
     var $cancel_btn = $('#cancel_button');
@@ -118,14 +108,50 @@ $(function(){
         $add_btn.toggleClass("display_none");
         $cancel_btn.toggleClass("display_none");
         $hidden_form.toggleClass("display_none");
+        $('#error_msg').empty();
+        $('#data_submitted').empty();
     });
     // ---------------------------------------------------------------------------
     // Trigger submit form from outside the form
+    // Check if there is an error in the form before submission
     // Couldn't use 'form' attribute because it is not supported in Internet Explorer
     // ----------------------------------------------------------------------
     $add_btn.click(function(){
-        $hidden_form.trigger('submit');
+        date_trim = $("#date_id").val().trim();
+        time_trim = $("#time_id").val().trim();
+        desc_trim = $("#description_id").val().trim()
+
+        if((date_trim == '') || (time_trim == '') || (desc_trim == '')){
+            $('#error_msg').text("Error! all fields are required");
+            console.log("error! true");
+            console.log("date_trim: " + date_trim + " time_trim " + time_trim + " description" + desc_trim);
+            
+            
+        } else{
+            
+            // $('#error_msg').empty();
+            
+            // console.log("not an error! false");
+            // console.log("date_trim: " + date_trim + " time_trim " + time_trim + " description" + desc_trim);
+            
+            $.ajax({
+                url:'/cgi-bin/insert_data.cgi',
+                type:'post',
+                data:$('#hidden_form').serialize(),
+                success:function(){
+                    // $hidden_form.trigger('submit');
+                    console.log("worked");
+                    
+                }
+            });
+            $('#data_submitted').load('/cgi-bin/insert_data.cgi');
+        }
+        
     });
+    $('#delete_id_data').click(function(){
+        $('#show_del_data').load('/cgi-bin/delete_table.cgi');
+    })
+    $('#show_del_data').load('/cgi-bin/delete_table.cgi');
 
     // -----------------------------------------
     // date validation
