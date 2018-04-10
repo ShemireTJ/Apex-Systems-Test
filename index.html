@@ -7,136 +7,113 @@
     <title>Document</title>
     <link rel="stylesheet" href="css/jquery-ui-1.12.1/jquery-ui.min.css">
     <link rel="stylesheet" href="css/jquery-ui-1.12.1/jquery-ui.theme.min.css">
-    <link rel="stylesheet" href="jquery.timepicker.min.css">
+    <link rel="stylesheet" href="css/jquery.timepicker.min.css">
+    <link rel="stylesheet" href="css/app.css">
     
-    
-    <style>
-        .display_none {display: none}
-        .display_block {display: block}
-        /* table, tr {
-            border: 1px solid black;
-            width: 800px;
-        } */
-        
-       
-    </style>
+
 </head>
 
 <body>
-    <div>
-        <h3><a href="http://localhost">Reload Page</a></h3>
-        <h6>Not loaded yet. </h6>
-    </div>
-  
-<div>
-
-    <button id="new_button">NEW</button>
-    <!--  form="hidden_form" is not compatible with Internet Explorer that's why the form is submitted through js -->
-        <button type="submit" id="add_button" class="display_none">ADD</button>
-        <button id="cancel_button" class="display_none">CANCEL</button>
+        <nav>
+            <h2>Appointment Maker</h2>
+        </nav>
+<div class="flexer_container">
     
-    
-</div>
+    <section id="error_info" class="error_info box">
+            <p><a href="http://localhost">RELOAD PAGE </a></p>
+            <p>Click Reload page above to refresh the DOM</p>
+            <div>
+        
+                    <p id="dom_info">Not loaded yet. </p>
+                    
+                </div>
+                <div id="error_msg" class="red">
+            
+                </div>
+                <div id="data_submitted" class="green">
+            
+                </div>
+                <div>
+                    <p>Click new to add Appointment or search saved appointment</p>
+                </div>
+    </section>
 
-<form action="/cgi-bin/insert_data.cgi" id="hidden_form" class="display_none" method="post">
+   <section class="new_add_search box" id="new_add_search">
+        <div>
 
-        <p>
-            <label for="date_id">DATE:</label>
-            <input type="text" id="date_id" name="date_input">
-        </p>
-        <p>
-            <label for="time_id">TIME: </label>
-            <input type="text" id="time_id" name="time_input">
-        </p>
-        <p>
-            <label for="description_id">DESC: </label>
-            <input type="text" id="description_id" name="description_input">
-        </p>
-        <!-- uncomment this to update row -->
-        <!-- <p>
-            <label for="id_id">ID Number: </label>
-            <input type="number" id="id_id" name="id_number">
-        </p> -->
+                <button id="new_button">NEW</button>
+                <!--  form="hidden_form" is not compatible with Internet Explorer that's why the form is submitted through js -->
+                    <button type="submit" id="add_button" class="display_none">ADD</button>
+                    <button id="cancel_button" class="display_none">CANCEL</button>
+                
+                
+            </div>
+
   
-</form>    
-<br>
-<!-- <form id="search_ajax_id" name="search_ajax_name" method="POST" action="/cgi-bin/json_data_test_4.cgi"> -->
+
+        <form action="/cgi-bin/insert_data.cgi" id="hidden_form" class="display_none" method="post">
+
+            <p>
+                <label for="date_id">DATE:</label>
+                <input type="text" id="date_id" name="date_input">
+            </p>
+            <p>
+                <label for="time_id">TIME: </label>
+                <input type="text" id="time_id" name="time_input">
+            </p>
+            <p>
+                <label for="description_id">DESC: </label>
+                <input type="text" id="description_id" name="description_input">
+            </p>
+            <!-- uncomment this to update row -->
+            <!-- <p>
+                <label for="id_id">ID Number: </label>
+                <input type="number" id="id_id" name="id_number">
+            </p> -->
+      
+    </form>  
         <div>
             <input type="text" name="search_input_name" id="search_input" /> 
             <button type="submit" id="search_button">SEARCH</button>
         </div>
-<!-- </form> -->
-<div id="table_all" class="display_none">
+    </section>
+
+<section id="show_select_db" class="show_select_db box">
+<div id="table_all" class="display_none contained_table">
 
 </div>
 <br>
-<div id="table_search" class="display_none">
-<!-- <table id="table_dynamic" border="1" cellspacing="2" width="800">
-        <thead>
-            <tr>
-                <th>DATE</th>
-                <th>TIME</th>
-                <th>DESCRIPTION</th>
-            </tr>
-        </thead>
-    </table> -->
+<div id="table_search" class="display_none contained_table">
+   
 </div>
-<div class="display_none">
-  
-    <hr>
-    <h4>Optional: Extra Section</h4>
-    <hr>
-    <h5>View Table section</h5>
-    <form action="/cgi-bin/view_table.cgi">
-        <input type="submit" value="VIEW TABLE">
-    </form>
-    <hr>
-    <!-- Work later on update section if time permits.
-        for now, just change the form action to update -->
-    <!-- 
-        
-        <h5>Update Section</h5>
-    <form action="/cgi-bin/update_table.cgi">  
-        <p>
-            <label for="id_id">ID Number: </label>
-            <input type="number" id="id_id" name="id_number">
-        </p>
-        <input type="submit" value="UPDATE ROW">
-    </form>
-    <hr> -->
-    <h5>Delete Section</h5>
-    <form action="/cgi-bin/delete_table.cgi">
-        <p>
-            <label for="id_id">ID Number: </label>
-            <input type="number" id="id_id" name="id_number">
-        </p>
-        <input type="submit" value="DELETE ROW">
-    </form>
+<hr>
+</section>
+<!-- This section is hidden. remove "display_none" class to show delete interface -->
+<section id="del_extra_table" class="del_extra_table box display_none">
 
-<hr>
-<br>
-<form action="/cgi-bin/check_json_data.cgi">
-    <input type="submit" value="check json data">
-</form>
-<br>
-<hr>
-<table id="location" border='1'>
-    <tr>
-        <th>DATE</th>
-         <th>TIME</th>
-         <th>DESCRIPTION</th>
-    </tr>
-</table>
-<hr>
-<h1>AJAX Perl test</h1>
-<div id="testdiv">*testdiv*</div>
-<hr>
+        <h4>Delete Section</h4>
+        <form action="/cgi-bin/delete_table.cgi">
+      
+            <p>
+                <label for="id_id">ID Number: </label>
+                <input type="number" id="id_id" name="id_number">
+            </p>
+            <input type="submit" value="DELETE ROW">
+        </form>
+ 
+        <!-- <h5>View Table section</h5>
+        <form action="/cgi-bin/view_table.cgi">
+            <input type="submit" value="VIEW TABLE">
+        </form> -->
+</section> 
+<section id="show_del_data" class="show_del_data contained_table box display_none">
+
+</section>
 </div>
 <script src="js/jquery-3.2.1.min.js"></script>
 <script src="js/jquery-ui.min.js"></script>
 <script src="js/jquery.timepicker.min.js"></script>
-<script>
-</script>
+
 <script src="js/app.js"></script>   
 </body>
 </html>
